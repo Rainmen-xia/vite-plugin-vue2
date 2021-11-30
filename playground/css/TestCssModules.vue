@@ -4,6 +4,7 @@
     <div class="css-modules-sfc" :class="$style.blue">
       &lt;style module&gt; - this should be blue
     </div>
+    <div class="icon">test</div>
     <div class="css-modules-import" :class="imported.turquoise">
       CSS modules import - this should be orange
     </div>

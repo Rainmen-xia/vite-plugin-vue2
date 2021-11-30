@@ -52,7 +52,9 @@ export interface ResolvedOptions extends VueViteOptions {
   target?: string
 }
 
+//console.log("12321312")
 export function createVuePlugin(rawOptions: VueViteOptions = {}): Plugin {
+  //console.log(rawOptions);
   const options: ResolvedOptions = {
     isProduction: process.env.NODE_ENV === 'production',
     ...rawOptions,
@@ -111,12 +113,19 @@ export function createVuePlugin(rawOptions: VueViteOptions = {}): Plugin {
       }
 
       const { filename, query } = parseVueRequest(id)
+
+      //console.log(query);
       // select corresponding block for subpart virtual modules
       if (query.vue) {
+        //console.log('vue')
         if (query.src) {
           return fs.readFileSync(filename, 'utf-8')
         }
+
+        //console.log('descript')
         const descriptor = getDescriptor(filename)!
+
+        //console.log(descriptor);
         let block: SFCBlock | null | undefined
 
         if (query.type === 'script') {
@@ -124,6 +133,9 @@ export function createVuePlugin(rawOptions: VueViteOptions = {}): Plugin {
         } else if (query.type === 'template') {
           block = descriptor.template!
         } else if (query.type === 'style') {
+          //console.log(query.type);
+          //console.log("rainmenxia---")
+          //console.log(query)
           block = descriptor.styles[query.index!]
         } else if (query.index != null) {
           block = descriptor.customBlocks[query.index]
@@ -153,7 +165,9 @@ export function createVuePlugin(rawOptions: VueViteOptions = {}): Plugin {
         return await transformMain(code, filename, options, this)
       }
 
-      const descriptor = getDescriptor(query.from || filename)!
+      const descriptor = getDescriptor(
+        query.from ? decodeURIComponent(query.from) : filename
+      )!
       // sub block request
       if (query.type === 'template') {
         return compileSFCTemplate(

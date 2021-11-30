@@ -20,12 +20,14 @@ export function createDescriptor(
     sourceRoot: root,
     needMap: true,
   })
+
+  // //console.log();
   // v2 hasn't generate template and customBlocks map
   // ensure the path is normalized in a way that is consistent inside
   // project (relative to root) and on different systems.
   const normalizedPath = slash(path.normalize(path.relative(root, filename)))
   descriptor.id = hash(normalizedPath + (isProduction ? source : ''))
-
+  //console.log('');
   cache.set(slash(filename), descriptor)
   return descriptor
 }
@@ -39,13 +41,15 @@ export function setPrevDescriptor(filename: string, entry: SFCDescriptor) {
 }
 
 export function getDescriptor(filename: string, errorOnMissing = true) {
+  //console.log(filename);
+  //console.log('test--failed');
   const descriptor = cache.get(slash(filename))
   if (descriptor) {
     return descriptor
   }
   if (errorOnMissing) {
     throw new Error(
-      `${filename} has no corresponding SFC entry in the cache. ` +
+      `${filename} has --- no corresponding SFC entry in the cache. ` +
         `This is a vite-plugin-vue2 internal error, please open an issue.`
     )
   }

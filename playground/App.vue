@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Vite-Plugin-Vue2 Playground</h1>
-    <TestMultiplySrcImport/>
+    <!-- <TestMultiplySrcImport/>
     <TestBlockSrcImport/>
     <TestScopedCss/>
     <TestCssModules/>
@@ -10,7 +10,9 @@
     <TestAssets/>
     <TestJsx/>
     <TestJsxSFC/> 
-    <TestDecorator/>
+    <TestDecorator/> -->
+    <Less/>
+    <Tsvg />
   </div>
 </template>
 
@@ -25,6 +27,8 @@ import TestAssets from './test-assets/TestAssets.vue'
 import TestJsx from './TestJsx.tsx'
 import TestJsxSFC from './TestJsxSFC.vue'
 import TestDecorator from './TestDecorator.tsx'
+import Less from './less/less.vue'
+import Tsvg  from './svg/svg.vue'
 
 export default {
   name: 'App',
@@ -38,7 +42,9 @@ export default {
     TestAssets,
     TestJsx,
     TestJsxSFC,
-    TestDecorator
+    TestDecorator,
+    Less,
+    Tsvg,
   }
 }
 </script>

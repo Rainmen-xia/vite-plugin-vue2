@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite'
-const { createVuePlugin } = require('../dist')
-
+const { createVuePlugin } = require('../src')
 const config = defineConfig({
   resolve: {
     alias: {
